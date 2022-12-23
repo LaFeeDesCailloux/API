@@ -4,6 +4,8 @@ addEventListener("fetch", event => {
 
 async function handleRequest(request) {
     if (request.method === "POST") {
+        const form_data = await request.json();
+
         let send_email = new Request("https://api.mailchannels.net/tx/v1/send", {
             "method": "POST",
             "headers": {
@@ -23,10 +25,10 @@ async function handleRequest(request) {
                     "name": "Formulaire de contact",
                 },
 
-                "subject": "Test Subject",
+                "subject": form_data.subject,
                 "content": [{
                     "type": "text/plain",
-                    "value": "Test message content",
+                    "value": form_data.message,
                 }],
             }),
         });
