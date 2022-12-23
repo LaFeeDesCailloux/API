@@ -1,0 +1,5 @@
+name = "contact-lafeedescailloux"
+main = "index.js"
+account_id = "20ca05211292395c49a93f147c58aa6c"
+workers_dev = true
+compatibility_date = "2022-12-23"
