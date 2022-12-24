@@ -1,6 +1,8 @@
-addEventListener("fetch", event => {
-    event.respondWith(handleRequest(event.request))
-})
+const headers = {
+    "Access-Control-Allow-Origin": "https://lafeedescailloux.fr",
+    "Access-Control-Allow-Headers": "*",
+    "Content-Type": "application/json"
+}
 
 async function handleRequest(request) {
     if (request.method === "POST") {
@@ -34,10 +36,22 @@ async function handleRequest(request) {
         });
 
         const response = await fetch(send_email);
-        return new Response("", {
+        return new Response(null, {
+            headers: {
+                ...headers
+            },
             status: response.status,
             statusText: response.statusText
         });
     }
-    return Response.redirect("https://lafeedescailloux.fr/", 301);
+
+    return new Response(null, {
+        headers: {
+            ...headers
+        },
+    });
 }
+
+addEventListener("fetch", event => {
+    event.respondWith(handleRequest(event.request))
+})
