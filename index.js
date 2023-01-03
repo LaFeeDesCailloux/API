@@ -16,7 +16,7 @@ async function handleRequest(request) {
             "body": JSON.stringify({
                 "personalizations": [{
                     "to": [{
-                        "email": TO_EMAIL,
+                        "email": "contact@lafeedescailloux.fr",
                     }],
                     "dkim_domain": "lafeedescailloux.fr",
                     "dkim_selector": "mailchannels",
@@ -24,9 +24,12 @@ async function handleRequest(request) {
                 }],
                 "from": {
                     "email": "contact@lafeedescailloux.fr",
-                    "name": "Formulaire de contact",
+                    "name": form_data.name,
                 },
-
+                "reply_to": {
+                    "email": form_data.email,
+                    "name": form_data.name,
+                },
                 "subject": form_data.subject,
                 "content": [{
                     "type": "text/plain",
